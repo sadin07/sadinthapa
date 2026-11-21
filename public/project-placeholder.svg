@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title">
+  <title>Project preview placeholder</title>
+  <rect width="800" height="500" fill="#121220"/>
+  <circle cx="400" cy="250" r="100" fill="#6366f1" opacity=".35"/>
+  <path d="M330 250h140M400 180v140" stroke="#f5f3ff" stroke-width="12" stroke-linecap="round"/>
+</svg>
