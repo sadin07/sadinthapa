@@ -64,7 +64,7 @@ export const projects: Project[] = [
     description: "A personal portfolio website showcasing my projects and skills.",
     image: withBase("project-placeholder.svg"),
     technologies: ["React","Typescript", "HTML", "CSS"],
-    github: "https://github.com/sadin07",
+    github: "https://github.com/sadin07" ,
     demo: "#",
   },
 

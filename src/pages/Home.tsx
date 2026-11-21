@@ -96,7 +96,11 @@ function Home() {
             <Instagram />
           </a>
 
-          <a href={`${import.meta.env.BASE_URL}resume.pdf`} download className="resume-link">
+          <a
+            href={`${import.meta.env.BASE_URL}sadin-resume.pdf`}
+            download="Sadin-Thapa-Resume.pdf"
+            className="resume-link"
+          >
             <Download size={17} /> Resume
           </a>
         </motion.div>
