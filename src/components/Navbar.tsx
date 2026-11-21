@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import { useTheme } from "../components/ThemeContext";
@@ -10,6 +10,17 @@ function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
   return (
     <header className="navbar">
       <div className="nav-container">
@@ -18,7 +29,10 @@ function Navbar() {
           SADIN<span>.</span>
         </Link>
 
-        <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+        <nav
+          id="primary-navigation"
+          className={`nav-links ${menuOpen ? "active" : ""}`}
+        >
           <NavLink
             to="/"
             end
@@ -60,12 +74,9 @@ function Navbar() {
             Contact
           </NavLink>
 
-          <button
-            className="nav-cta"
-            onClick={closeMenu}
-          >
-            <Link to="/contact">Let's talk</Link>
-          </button>
+          <Link to="/contact" className="nav-cta" onClick={closeMenu}>
+            Let's talk
+          </Link>
         </nav>
 
         <div className="nav-actions">
@@ -84,6 +95,7 @@ function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
           >
             {menuOpen ? <X size={23} /> : <Menu size={23} />}
           </button>
