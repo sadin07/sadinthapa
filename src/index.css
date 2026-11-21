@@ -389,8 +389,13 @@ img {
   font-size: 12px;
   border: none;
   background: transparent;
+  color: var(--muted);
   font-family: inherit;
   cursor: pointer;
+}
+
+.resume-link:hover {
+  color: var(--green);
 }
 
 .resume-modal-overlay {

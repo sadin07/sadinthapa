@@ -122,7 +122,7 @@ function Home() {
             onClick={() => setShowResume(true)}
             aria-label="Open and download resume"
           >
-            <Download size={17} /> Resume
+            Resume
           </button>
         </motion.div>
       </div>
