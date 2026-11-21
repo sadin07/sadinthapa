@@ -3,12 +3,8 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Github,
-  Linkedin,
   Download,
-  Code2,
-  Database,
-  Globe,
-  Instagram,
+  Instagram
  
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -100,7 +96,7 @@ function Home() {
             <Instagram />
           </a>
 
-          <a href="/resume.pdf" download className="resume-link">
+          <a href={`${import.meta.env.BASE_URL}resume.pdf`} download className="resume-link">
             <Download size={17} /> Resume
           </a>
         </motion.div>
@@ -133,7 +129,7 @@ function Home() {
 
           <div className="avatar-frame">
             <img
-              src="/images/profile.png"
+              src={`${import.meta.env.BASE_URL}images/profile.png`}
               alt="Illustrated developer avatar of Sadin"
               className="developer-avatar"
             />

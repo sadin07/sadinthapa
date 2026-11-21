@@ -6,7 +6,6 @@ import {
   MapPin,
   Send,
   Github,
-  Linkedin,
   Instagram
 } from "lucide-react";
 
