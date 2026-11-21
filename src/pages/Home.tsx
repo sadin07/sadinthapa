@@ -1,10 +1,12 @@
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Github,
   Download,
-  Instagram
+  Instagram,
+  X
  
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -18,6 +20,24 @@ const floatingTech = [
 ];
 
 function Home() {
+  const [showResume, setShowResume] = useState(false);
+
+  useEffect(() => {
+    if (!showResume) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setShowResume(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [showResume]);
+
   return (
     <>
     <section className="hero section-container">
@@ -96,13 +116,14 @@ function Home() {
             <Instagram />
           </a>
 
-          <a
-            href={`${import.meta.env.BASE_URL}sadin-resume.pdf`}
-            download="Sadin-Thapa-Resume.pdf"
+          <button
+            type="button"
             className="resume-link"
+            onClick={() => setShowResume(true)}
+            aria-label="Open and download resume"
           >
             <Download size={17} /> Resume
-          </a>
+          </button>
         </motion.div>
       </div>
 
@@ -148,6 +169,54 @@ function Home() {
     </section>
 
     <Skills />
+
+    <AnimatePresence>
+      {showResume && (
+        <motion.div
+          className="resume-modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setShowResume(false)}
+        >
+          <motion.div
+            className="resume-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Sadin Thapa resume"
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.2 }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="resume-modal-actions">
+              <a
+                href={`${import.meta.env.BASE_URL}sadin-resume.pdf`}
+                download="Sadin-Thapa-Resume.pdf"
+                className="resume-modal-download"
+              >
+                <Download size={17} /> Download
+              </a>
+              <button
+                type="button"
+                className="resume-modal-close"
+                onClick={() => setShowResume(false)}
+                aria-label="Close resume"
+              >
+                <X size={21} />
+              </button>
+            </div>
+
+            <img
+              src={`${import.meta.env.BASE_URL}images/sadinresume.png`}
+              alt="Sadin Thapa resume"
+              className="resume-modal-image"
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
     </>
   );
 }

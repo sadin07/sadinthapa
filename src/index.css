@@ -387,6 +387,83 @@ img {
 .resume-link {
   gap: 7px;
   font-size: 12px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.resume-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(7px);
+}
+
+.resume-modal {
+  position: relative;
+  max-width: min(720px, 94vw);
+  max-height: 94vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.resume-modal-actions {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 8px 10px;
+  background: rgba(16, 21, 18, 0.96);
+  border-radius: 8px 8px 0 0;
+}
+
+.resume-modal-download,
+.resume-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: #f0f3f0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.resume-modal-download {
+  gap: 7px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #91c49b;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.resume-modal-download:hover,
+.resume-modal-close:hover {
+  color: #91c49b;
+}
+
+.resume-modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.resume-modal-image {
+  width: 100%;
+  height: auto;
 }
 
 /* ================================
